@@ -18,4 +18,4 @@ npm start
 
 ## UI   
 
-![UI](images/ui.png)
+![UI](images/UI.png)
