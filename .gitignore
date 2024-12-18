@@ -1,0 +1,17 @@
+# python ignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# node ignore
+loilibrechat/node_modules/
+loilibrechat/package-lock.json
+loilibrechat/package.json
+
+
+
+# env ignore
+loilibrechat/.env.local
+loilibreback/.env
+

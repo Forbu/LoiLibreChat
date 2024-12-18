@@ -1,6 +1,9 @@
 services:
-  app:
-    build: .
+  frontend:
+    image: loilibre_front
+    build: 
+      context: .
+      dockerfile: ./containers/Dockerfile_front
     ports:
       - "3000:3000"
     volumes: # for debugging purpose
@@ -8,3 +11,26 @@ services:
     command: # useless command to keep the container running
       - sleep
       - infinity
+    networks:
+      - loilibre_network
+    environment:
+      - BACKEND_URL=http://backend:8001
+
+  backend:
+    image: loilibre_back
+    build: 
+      context: .
+      dockerfile: ./containers/Dockerfile_back
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    volumes: # for debugging purpose
+      - .:/code
+    command: ["/bin/bash", "-c", "cd /code/loilibreback/ && source .env && python loilibreback/serving.py"]
+    networks:
+      - loilibre_network
+
+
+networks:
+  loilibre_network:
+    driver: bridge

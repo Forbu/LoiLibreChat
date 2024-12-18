@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import { useState } from 'react';
 
 const DialogueInput = (props) => {
-    const [userInput, setUserInput] = useState('');
+
     
     return (
         <Box sx={{ 
@@ -19,16 +19,17 @@ const DialogueInput = (props) => {
                 multiline
                 rows={4}
                 fullWidth
-                value={userInput}
-                onChange={(e) => setUserInput(e.target.value)}
+                value={props.currentUserInput}
+                onChange={(e) => props.setCurrentUserInput(e.target.value)}
                 placeholder="Type your message here..."
                 variant="outlined"
             />
             <Button 
                 variant="contained"
                 sx={{ height: '56px' }}
+                onClick={() => props.handleSubmit(props.currentUserInput)}
             >
-                Send
+                Envoyer
             </Button>
         </Box>
     );
